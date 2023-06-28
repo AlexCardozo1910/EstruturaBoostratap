@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link href='~/images/icon.png' rel='shortcut' type='image/x-icon' />
+    <link href='~/images/icon.png' rel='icon' type='image/x-icon' />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-datepicker3.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Logo</h3>
+                <strong>Logo</strong>
+            </div>
+            @await Component.InvokeAsync("Menu")
+        </nav>
+        <div id="content">
+            <header>
+                @await Component.InvokeAsync("User")
+            </header>
+            @RenderBody()
+        </div>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <p class="direitos-autorais">&copy;@DateTime.Now.Year - Todos os Direitos Reservados</p>
+            <p class="versao">Versão - 1.0.0.0</p>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/solid.js"></script>
+    <script src="~/js/fontawesome.js"></script>
+    @RenderSection("Scripts", required: false)
+    <script src="~/js/index.js" asp-append-version="true"></script>
+</body>
+</html>

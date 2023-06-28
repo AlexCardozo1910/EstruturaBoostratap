@@ -68,6 +68,80 @@ $(document).ready(function () {
             $('input:checkbox').prop("checked", false);
         }
     });
+
+    if ($("#chart").length > 0) {
+
+        var options = {
+            fill: {
+                colors: ['#0077db', '#ffb900']
+            },
+            legend: {
+                markers: {
+                    width: 12,
+                    height: 12,
+                    fillColors: ['#0077db', '#ffb900'],
+                    radius: 12,
+                },
+            },
+            chart: {
+                width: "100%",
+                height: 380,
+                type: "bar"
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                width: 1,
+                colors: ["#fff"]
+            },
+            series: [
+                {
+                    name: 'CSAT Anterior',
+                    data: [44, 55, 41, 64, 22],
+                    colors: '#2983FF'
+                },
+                {
+                    name: 'CSAT Atual',
+                    data: [53, 32, 33, 52, 13],
+                    colors: '#F9C80E'
+                }
+            ],
+            xaxis: {
+                categories: [
+                    "Geral",
+                    "Preço",
+                    "Produto",
+                    "Atendimento",
+                    "Loja"
+                ]
+            },
+            responsive: [
+                {
+                    breakpoint: 1000,
+                    options: {
+                        plotOptions: {
+                            bar: {
+                                horizontal: false
+                            }
+                        },
+                        legend: {
+                            position: "bottom"
+                        }
+                    }
+                }
+            ]
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+        chart.render();
+    }
 });
 
 function setCamposCadastro() {

@@ -188,26 +188,6 @@ namespace EstruturaBoostratap.Controllers
                     dados.Senha = HashValue(collection["Senha"]);
                 }
 
-                if (dados.VerificarCPF() == true)
-                {
-                    dados.MensagemErro = "Este CPF/ CNPJ já está cadastrado para outro Cliente.";
-                    return View(dados);
-                }
-
-                if (dados.VerificaEmail() == true)
-                {
-                    dados.MensagemErro = "Este e-mail já está cadastrado para outro Cliente.";
-                    return View(dados);
-                }
-
-                if (dados.TipoPessoa == "F" && dados.Isento == false)
-                {
-                    if (dados.VerificaInscricao() == true)
-                    {
-                        dados.MensagemErro = "Esta Inscrição Estadual já está cadastrada para outro Cliente.";
-                    }
-                }
-
                 dados.AlterarCliente();
 
                 return RedirectToAction("Index", "Cliente");

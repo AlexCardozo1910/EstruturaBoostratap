@@ -18,7 +18,6 @@ namespace EstruturaBoostratap.Data.Commun
     {
 		public const string SessionNomeUsuario = "_NomeUsuario";
 		public const string SessionUsuarioID = "_UsuarioID";
-		public const string SessionProjetoID = "_ProjetoID";
 
         private readonly IWebHostEnvironment webHostEnvironment;
 		

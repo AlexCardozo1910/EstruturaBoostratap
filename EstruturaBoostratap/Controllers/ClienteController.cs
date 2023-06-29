@@ -190,7 +190,9 @@ namespace EstruturaBoostratap.Controllers
 
                 dados.AlterarCliente();
 
-                return RedirectToAction("Index", "Cliente");
+                dados.MensagemOK = "Dados alterados com sucesso!";
+
+                return RedirectToAction("Edit", "Cliente");
             }
             catch (Exception ex)
             {

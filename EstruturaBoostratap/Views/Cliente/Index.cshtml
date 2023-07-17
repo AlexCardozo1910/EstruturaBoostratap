@@ -2,6 +2,18 @@
 @{
     ViewData["Title"] = "Listar Clientes";
 }
+
+@section Styles {
+    <link href="~/lib/bootstrap/dist/css/bootstrap-reboot.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-datepicker3.css" rel="stylesheet" />
+}
+@section Scripts {
+    <script src="~/js/moment.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.datepicker.js"></script>
+    <script src="~/js/jquery.maskedinput-1.3.min.js"></script>
+}
+
 <h1 class="titulo-pagina">Clientes</h1>
 <div class="clear-titulo"></div>
 <div class="top-pagina">
@@ -11,9 +23,7 @@
     <form asp-action="Index">
         <div class="menu-listar">
             <div class="btn-filtrar">
-                <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Filtrar
-                </button>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Filtrar</button>
             </div>
             <div class="btn-novo">
                 <a class="btn btn-primary" asp-action="Create" role="button">
@@ -21,35 +31,37 @@
                 </a>
             </div>
             <div class="clear"></div>
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                    <div class="form-row">
-                        <div class="col-md-3 mb-3">
-                            <label for="NomeCliente">Nome do Cliente/Razão Social</label>
-                            @Html.TextBoxFor(x => x.NomeClienteFiltro, new { @id = "NomeClienteFiltro", @class = "form-control", @placeholder = "Nome ou Razão Social do Cliente" })
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="EmailCliente">E-mail Cliente</label>
-                            @Html.TextBoxFor(x => x.EmailClienteFiltro, new { @id = "EmailClienteFiltro", @class = "form-control", @placeholder = "E-mail do Cliente" })
-                        </div>
-                        <div class="col-md-2 mb-2">
-                            <label for="Telefone">Telefone</label>
-                            @Html.TextBoxFor(x => x.TelefoneClienteFiltro, new { @id = "TelefoneClienteFiltro", @class = "form-control maskPhone", @placeholder = "Telefone do Cliente" })
-                        </div>
-                        <div class="col-md-2 mb-2">
-                            <label for="DataCadastro">Data Cadastro</label>
-                            <div class="input-group date dataPicker">
-                                @Html.TextBoxFor(x => x.DataCadastroFiltro, new { @id = "DataCadastroFiltro", @class = "form-control maskPhone", @placeholder = "Selecione uma data ou período" })
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                        <div class="card card-body">
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="NomeCliente">Nome do Cliente/Razão Social</label>
+                                    @Html.TextBoxFor(x => x.NomeClienteFiltro, new { @id = "NomeClienteFiltro", @class = "form-control", @placeholder = "Nome ou Razão Social do Cliente" })
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="EmailCliente">E-mail Cliente</label>
+                                    @Html.TextBoxFor(x => x.EmailClienteFiltro, new { @id = "EmailClienteFiltro", @class = "form-control", @placeholder = "E-mail do Cliente" })
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <label for="Telefone">Telefone</label>
+                                    @Html.TextBoxFor(x => x.TelefoneClienteFiltro, new { @id = "TelefoneClienteFiltro", @class = "form-control maskPhone", @placeholder = "Telefone do Cliente" })
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <label for="DataCadastro">Data Cadastro</label>
+                                    @Html.TextBoxFor(x => x.DataCadastroFiltro, new { @id = "DataCadastroFiltro", @class = "form-control dataPicker", @placeholder = "Selecione uma data ou período" })
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <label for="DataCadastro">Bloqueado</label>
+                                    @Html.DropDownListFor(x => x.StatusFiltro, new SelectList(Model.ListaBloqueio, "Value", "Text", Model.ListaBloqueio), new { @id = "StatusFiltro", @class = "form-select" })
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+                                <a href="#" class="btn btn-danger" onclick="javascript:document.FormCleanFilter.submit();" role="button">Limpar Filtros</a>
                             </div>
                         </div>
-                        <div class="col-md-2 mb-2">
-                            <label for="DataCadastro">Bloqueado</label>
-                            @Html.DropDownListFor(x => x.StatusFiltro, new SelectList(Model.ListaBloqueio, "Value", "Text", Model.ListaBloqueio), new { @id = "StatusFiltro", @class = "custom-select" })
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
-                        <a href="#" class="btn btn-danger" onclick="javascript:document.FormCleanFilter.submit();" role="button">Limpar Filtros</a>
                     </div>
                 </div>
             </div>
@@ -57,7 +69,7 @@
     </form>
     <div class="grid-result">
         <table class="table table-hover">
-            <thead class="thead-light">
+            <thead class="table-light">
                 <tr>
                     <th scope="col"><input type="checkbox" name="seleciona-tudo" id="seleciona-tudo" /></th>
                     <th scope="col">Nome/Razao Social</th>
@@ -86,9 +98,3 @@
         @await Component.InvokeAsync("Paginacao")
     </div>
 </div>
-
-@section Scripts {
-    <script src="~/js/moment.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap-datepicker.js"></script>
-    <script src="~/js/jquery.maskedinput-1.3.min.js"></script>
-}

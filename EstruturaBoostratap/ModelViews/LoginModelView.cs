@@ -47,8 +47,6 @@ namespace EstruturaBoostratap.ModelViews
 
                 var DadosUsuarios = conexao.Query<LoginModelView>(sql.ToString()).SingleOrDefault();
 
-                LoginModelView dados = new LoginModelView();
-
                 if (DadosUsuarios != null)
                 {
                     UsuarioID = DadosUsuarios.UsuarioID;

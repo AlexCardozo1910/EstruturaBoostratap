@@ -284,16 +284,10 @@ a.article:hover {
         display: none;
     }
 }
-.footer {
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
-}
 .direitos-autorais{
     font-weight: bold;
     font-size: 12px;
-    text-align: center;
+    text-align: left;
     margin-bottom: 0;
 }
 .versao{
@@ -345,8 +339,8 @@ a.article:hover {
     .esqueci-senha a {
         color: #4FCAFF;
     }
-.identificacao{
-    float: right;
+.identificacao {
+    color: #e9ecef;
     margin-top: 16px;
 }
     .identificacao .usuario {

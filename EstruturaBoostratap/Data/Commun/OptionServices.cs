@@ -10,6 +10,13 @@ namespace EstruturaBoostratap.Data.Commun
 		public int QTDRegistros { get; set; }
 		public int PageAtual { get; set; }
 		public int RPP { get; set; } = 20;
+		public int Tipo { get; set; }
+		public string Mensagem { get; set; }
+		public string MensagemInfo { get; set; }
+		public string MensagemReport { get; set; }
+		public string MensagemOk { get; set; }
+		public string MensagemErro { get; set; }
+		public bool DadosAlterados { get; set; }
 
 		public class NomeMeses
 		{
@@ -92,6 +99,19 @@ namespace EstruturaBoostratap.Data.Commun
 			};
 
 			return dados;
+		}
+
+		public string LimpaReaisDecimal(string valor)
+		{
+
+			if (String.IsNullOrEmpty(valor))
+				return "0.00";
+
+			var limpa_real = valor.Replace("R$", "");
+			var limpa_ponto = limpa_real.Replace(".", "");
+			var final = limpa_ponto.Replace(",", ".");
+
+			return final;
 		}
 
 		/**
